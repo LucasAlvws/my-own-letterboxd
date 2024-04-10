@@ -11,3 +11,4 @@ class FilmReviewSerializer(serializers.ModelSerializer):
     def validate_rate(self, obj):
         if obj < 0 or obj > 5:
             raise ValidationError("The rate value must to be between 0 and 5.")
+        return obj

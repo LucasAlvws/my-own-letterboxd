@@ -5,9 +5,17 @@ from review.views import (
     FilmReviewListCreateAPIView,
     FilmReviewDestroyAPIView,
     FilmReviewUpdateAPIView,
+    FilmReviewGenericViewSetAPIView
 )
 
-urlpatterns = [
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+
+router.register('viewset', FilmReviewGenericViewSetAPIView, basename="review")
+
+urlpatterns = router.urls
+urlpatterns += [
     path(
         "classview/<int:pk>/",
         FilmReviewRetriveAPIView.as_view(),

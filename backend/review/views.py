@@ -1,4 +1,6 @@
 from rest_framework import generics
+from rest_framework.viewsets import ModelViewSet
+
 
 from review.models import FilmReview
 from review.serializer import FilmReviewSerializer
@@ -22,6 +24,12 @@ class FilmReviewUpdateAPIView(generics.UpdateAPIView):
 
 
 class FilmReviewDestroyAPIView(generics.DestroyAPIView):
+    serializer_class = FilmReviewSerializer
+    queryset = FilmReview.objects.all()
+    lookup_field = "pk"
+
+
+class FilmReviewGenericViewSetAPIView(ModelViewSet):
     serializer_class = FilmReviewSerializer
     queryset = FilmReview.objects.all()
     lookup_field = "pk"
